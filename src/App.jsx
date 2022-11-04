@@ -1,61 +1,28 @@
 import { useReducer } from "react";
 import "./App.css";
-
-const initialState = {
-  name: "",
-  lastname: "",
-  age: "",
-  email: ""
-}
-
-const userReducer = (state, action ) => {
-  switch (action.type) {
-    case "SET NAME":
-      return { ...state,
-        name: "Jose Fernando",};
-    case "SET LASTNAME":
-      return {
-        ...state,
-        lastName: action.payload,
-      };
-    case "SET EMAIL":
-      return {
-        ...state,
-        email: "correo@correo.com",
-      };
-    case "SET AGE":
-      return {
-        ...state,
-        age: action.payload,
-      };
-    default:
-      return initialState;
-  }
-}
+import { initialState, userReducer } from "./reducers/userReducer";
+import { SET_AGE, SET_EMAIL, SET_LASTNAME, SET_NAME } from "./types/userTypes";
 
 function App() {
-
-  // 'dispatch' is a better word than 'setState'
   const [state, dispatch] = useReducer(userReducer, initialState);
 
   const handleClickName = () => {
-    dispatch({ type: "SET NAME", });
+    dispatch({ type: SET_NAME });
   };
 
   const handleClickEmail = () => {
-    dispatch({ type: "SET EMAIL" });
+    dispatch({ type: SET_EMAIL });
   };
 
   const handleClickLastName = () => {
     dispatch({
-      type: "SET LASTNAME",
-      payload: "Velasquez",
+      type: SET_LASTNAME,
+      payload: "Velasque",
     });
   };
-
   const handleClickAge = () => {
     dispatch({
-      type: "SET AGE",
+      type: SET_AGE,
       payload: "12",
     });
   };
@@ -63,8 +30,6 @@ function App() {
   const handleClick = () => {
     dispatch({ type: "sdandsdaklas" });
   };
-
-  console.log("Render");
 
   return (
     <div className="App">
